@@ -10,6 +10,8 @@ import (
 	"github.com/charmbracelet/bubbles/timer"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+
+	"github.com/common-nighthawk/go-figure"
 )
 
 var timers = []time.Duration{45 * time.Minute, 5 * time.Minute, 15 * time.Minute}
@@ -117,8 +119,8 @@ func (m model) View() string {
 
 	s += "\n"
 	if !m.quitting {
-		s += "Time left "
-		s += fmtDuration(m.timer.Timeout)
+		s += "Time left\n"
+		s += figure.NewFigure(fmtDuration(m.timer.Timeout), "", true).String()
 		s += "\n"
 	}
 	s += "Completed: "
